@@ -1,4 +1,4 @@
-A Solution to visualzie data flows in SAS codes
+A Solution to visualize data flows in SAS codes
 ===============================================
 
 1. Run ssDF.pl to get data flows ( [from, to] pairs ).
@@ -10,4 +10,4 @@ A Solution to visualzie data flows in SAS codes
 
 % drawDF.R XXX.edges
 
-Note: drawDF.R requires igraph and tcltk packes
+Note: drawDF.R requires igraph and tcltk packages.
