@@ -2,8 +2,8 @@
 
 #####################################################
 ###                                               ###
-### Extract data flows (edges) from a SAS Code    ###
-###                                               ###
+### Extract data flows ( [from, to] pairs) from   ###
+### SAS code                                      ###
 ###                                               ###
 ### Created by David Yeung (dyeung008@gmail.com)  ###
 ###                                               ###
@@ -40,7 +40,7 @@ my @results     = ();
 
 ## Match Data step
 while ($cont_str=~/^\s*data\s(.+?);.*?\b(set|merge)\s(.+?);.*?\brun;/msgi) {
-
+	
     my $to_block = rmBrackets($1);
     my $fr_block = rmBrackets($3);
 
@@ -49,13 +49,9 @@ while ($cont_str=~/^\s*data\s(.+?);.*?\b(set|merge)\s(.+?);.*?\brun;/msgi) {
 
     my $pos_str  =  pos($cont_str);
 
-    for (@to_dsns) {
+    for $toDataNm  (@to_dsns) {
 
-        $toDataNm = $_;
-
-        for (@fr_dsns) {
-
-            $fromDataNm = $_;
+        for $fromDataNm (@fr_dsns) {
 
             push @results,"$pos_str,$fromDataNm,$toDataNm";
         }
@@ -63,21 +59,20 @@ while ($cont_str=~/^\s*data\s(.+?);.*?\b(set|merge)\s(.+?);.*?\brun;/msgi) {
 }
 
 
-
 ## Match Proc Step
 while ($cont_str=~/^\s*proc.*?data\s*=(.+?)[ (;\n](.*?)\brun;/msgi) {
 
-        my $pos_str = pos($cont_str);
+	my $pos_str = pos($cont_str);
 
-        $fromDataNm = trim($1);
-        $toDataNm   = trim($2);
+	$fromDataNm = trim($1);
+	$toDataNm   = trim($2);
 
-        if ($toDataNm=~/\bout\s*=\s*(.+?)[ ;(\n]/gi) {
+	if ($toDataNm=~/\bout\s*=\s*(.+?)[ ;(\n]/gi) {
 
-            $toDataNm = trim($1);
+		$toDataNm = trim($1);
 
-            push @results,"$pos_str,$fromDataNm,$toDataNm";
-        }
+		push @results,"$pos_str,$fromDataNm,$toDataNm";
+	}
 }
 
 
@@ -89,10 +84,9 @@ while ($cont_str=~/create table (.+?) as(.+?;)/msgi) {
     $toDataNm    =  $1;
     $fromDataNm  =  $2;
 
-
     while ($fromDataNm=~/(from|join)\s*(.+?)[\n;( ]/msgi) {
 
-        push @results, "$pos_str, $2, $toDataNm";
+        push @results, "$pos_str,$2,$toDataNm";
     }
 }
 
@@ -154,7 +148,6 @@ for (@sorted_keys) {
         }
     }
 
-
     for (keys %CREATED) {
         if (defined $EXIST{$_} ) {
             $EXIST{$_} += 1;
@@ -163,7 +156,6 @@ for (@sorted_keys) {
             $EXIST{$_} = 1;
         }
     }
-
 }
 
 
@@ -182,17 +174,18 @@ sub trim {
 }
 
 
-# Remove brackets
+# Remove bracketed content
 sub rmBrackets {
     my $input = shift;
 
     my $str_len = length($input);
 
-    my $pcounts = 0;
+    my $pcounts  = 0;
     my $firstobs = 0;
 
-    for ($i=0;$i<$str_len;$i++) {
-        my $curr_char = substr($input,$i,1);
+    for (my $i=0;$i<$str_len;$i++) {
+
+        my $curr_char = substr($input ,$i, 1);
 
         if ($curr_char eq "(") {
             $pcounts += 1;
