@@ -11,7 +11,7 @@ ig <- graph.data.frame(edges);
 
 tt <- tktoplevel()
 
-w <- tkplot(ig)
+w <- tkplot(ig, vertex.color="white", edge.width=3)
 
 tkwait.window(tt)
 
