@@ -10,6 +10,6 @@
 
    ```% drawDF.R XXX.edges```
 
-Note: drawDF.R requires **igraph** and **tcltk** packages.
+Note: drawDF.R requires [igraph](http://igraph.org/r/) and [tcltk](https://cran.r-project.org/web/packages/tcltk2/index.html) packages.
 
-For example please visit the [wiki](https://github.com/dashagen/sas-dataflow/wiki) page 
+For a use case, please visit the [wiki](https://github.com/dashagen/sas-dataflow/wiki) page. 
