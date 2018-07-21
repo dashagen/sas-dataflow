@@ -41,8 +41,8 @@ my @results     = ();
 ## Match Data step
 while ($cont_str=~/^\s*data\s(.+?);.*?\b(set|merge)\s(.+?);.*?\brun;/msgi) {
 	
-    my $to_block = rmBrackets($1);
-    my $fr_block = rmBrackets($3);
+    my $to_block = rmParens($1);
+    my $fr_block = rmParens($3);
 
     my @to_dsns = split(" ", $to_block);
     my @fr_dsns = split(" ", $fr_block);
@@ -125,7 +125,7 @@ for (@sorted_keys) {
 
         $CREATED{$to} = 1;
 
-        #print from data
+        #output name of the "from" dataset
         if (not defined $EXIST{$from}) {
             $EXIST{$from} = 1;
         }
@@ -138,7 +138,7 @@ for (@sorted_keys) {
         }
 
 
-        #print to data
+        #output name of the "to" dataset
         if (not defined $EXIST{$to}) {
             print "$to\n";
         }
@@ -163,7 +163,7 @@ for (@sorted_keys) {
 #### Subroutines                              ####
 ##################################################
 
-# Remove trailing and preceding spaces
+# Remove trailing and leading spaces
 sub trim {
     my $string = shift;
 
@@ -174,8 +174,8 @@ sub trim {
 }
 
 
-# Remove bracketed content
-sub rmBrackets {
+# Remove parentheses
+sub rmParens {
     my $input = shift;
 
     my $str_len = length($input);
