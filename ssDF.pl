@@ -174,7 +174,7 @@ sub trim {
 }
 
 
-# Remove parentheses
+# Remove parentheses and contents enclosed
 sub rmParens {
     my $input = shift;
 
