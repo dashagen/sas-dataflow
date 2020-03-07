@@ -23,8 +23,8 @@
   * A window will pop up with a raw diagram of the data flow
 <img src=raw.png><br><br>
 
-  * You can re-arrange the vertexes and edges to make it look better<br><br><img src=https://raw.github.com/dashagen/sas-dataflow/master/after.png>
+  * You can re-arrange the vertexes and edges to make it look better<br><br><img src=after.png width="500">
   
-Note: drawDF.R requires [igraph](http://igraph.org/r/) and [tcltk](https://cran.r-project.org/web/packages/tcltk2/index.html) packages.
+## Note
+drawDF.R requires [igraph](http://igraph.org/r/) and [tcltk](https://cran.r-project.org/web/packages/tcltk2/index.html) packages.
 
-For a use case, please visit the [wiki](https://github.com/dashagen/sas-dataflow/wiki) page. 
