@@ -7,7 +7,7 @@
    % ssDF.pl ex.sas > ex.edges
    ```
   
-   `ex.edges` looks like
+   [ex.edges](ex.edges) looks like
   
    ```
    a1,a2
@@ -17,14 +17,13 @@
    a3,p1
    a3,p2
    ```
-2. We then run `drawDF.R` to visualize the data flow
+2. We then run [drawDF.R](drawDF.R) to visualize the data flow
    
    ```%drawDF.R ex.edges```
-  * A window will pop up with a raw diagram of the data flow
-<img src=raw.png><br><br>
+  * A window will pop up with a raw diagram of the data flow<br><img src=raw.png width="380"><br><br>
 
   * You can re-arrange the vertexes and edges to make it look better<br><br><img src=after.png width="500">
   
 ## Note
-drawDF.R requires [igraph](http://igraph.org/r/) and [tcltk](https://cran.r-project.org/web/packages/tcltk2/index.html) packages.
+[drawDF.R](drawDF.R) requires [igraph](http://igraph.org/r/) and [tcltk](https://cran.r-project.org/web/packages/tcltk2/index.html) packages.
 
