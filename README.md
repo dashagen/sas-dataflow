@@ -1,15 +1,15 @@
 # A Solution to visualize data flow in SAS codes
 
 ## Usage 
-1. Suppose we have a piece of SAS code called `ex.sas`, we first run `ssDF.pl` to get the data flow information ( [from, to] pairs) and pass to a file (`ex.edges`).
+1. Suppose we have a piece of SAS code called [ex.sas](ex.sas), we first run [ssDF.pl](ssDF.pl) to get the data flow information ( [from, to] pairs) and pass to a file ([ex.edges](ex.edges)).
   
-  ```
-  % ssDF.pl ex.sas > ex.edges
-  ```
+   ```
+   % ssDF.pl ex.sas > ex.edges
+   ```
   
-  `ex.edges` looks like
+   `ex.edges` looks like
   
-  ```
+   ```
    a1,a2
    a2,a2(2)
    a1,a3
