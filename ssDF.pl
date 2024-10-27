@@ -84,7 +84,7 @@ while ($cont_str=~/create table (.+?) as(.+?;)/msgi) {
     $toDataNm    =  $1;
     $fromDataNm  =  $2;
 
-    while ($fromDataNm=~/(from|join)\s*(.+?)[\n;( ]/msgi) {
+    while ($fromDataNm=~/(\bfrom\b|\bjoin\b)\s*(.+?)[\n;( ]/msgi) {
 
         push @results, "$pos_str,$2,$toDataNm";
     }
@@ -131,20 +131,20 @@ for (@sorted_keys) {
         }
 
         if ($EXIST{$from} == 1) {
-            print "$from,";
+            print "\"$from\" -> ";
         }
         else {
-            print $from."($EXIST{$from}),";
+            print "\"$from($EXIST{$from})\" -> ";
         }
 
 
         #output name of the "to" dataset
         if (not defined $EXIST{$to}) {
-            print "$to\n";
+            print "\"$to\"\n";
         }
         else {
             my $new_number = $EXIST{$to} + 1;
-            print "$to($new_number)\n";
+            print "\"$to($new_number)\"\n";
         }
     }
 
