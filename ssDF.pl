@@ -84,7 +84,7 @@ while ($cont_str=~/create table (.+?) as(.+?;)/msgi) {
     $toDataNm    =  $1;
     $fromDataNm  =  $2;
 
-    while ($fromDataNm=~/(\bfrom\b|\bjoin\b)\s*(.+?)[\n;( ]/msgi) {
+    while ($fromDataNm=~/(\bfrom\b|\bjoin\b)\s*(.+?)[\n;() ]/msgi) {
 
         push @results, "$pos_str,$2,$toDataNm";
     }
